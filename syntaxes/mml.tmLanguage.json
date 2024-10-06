@@ -1,0 +1,32 @@
+{
+	"scopeName": "source.mml",
+	"patterns": [
+	  {
+		"name": "entity.name.tag.mml",
+		"match": "\\(\\&[a-zA-Z0-9]+"
+	  },
+	  {
+		"name": "entity.name.tag.close.mml",
+		"match": "\\.\\&[a-zA-Z0-9]+"
+	  },
+	  {
+		"name": "string.quoted.double.mml",
+		"match": "\"[^\"]*\""
+	  },
+	  {
+		"name": "variable.parameter.mml",
+		"match": "[a-zA-Z0-9]+!\"[^\"]+\""
+	  },
+	  {
+		"name": "punctuation.section.block.mml",
+		"match": "[{}]"
+	  },
+	  {
+		"name": "entity.other.attribute-name.mml",
+		"match": "\\b[a-zA-Z0-9]+!\"[^\"]*\""
+	  }
+	],
+	"repository": {},
+	"fileTypes": ["mml"],
+	"name": "MML"
+}

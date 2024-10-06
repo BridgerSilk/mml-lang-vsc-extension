@@ -1,0 +1,33 @@
+{
+  "name": "mml-lang-support",
+  "displayName": "MML Lang Support",
+  "description": "Syntax highlighting and file icon for Modern Markup Language.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.94.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "mml",
+        "aliases": ["Modern Markup Language", "MML", "mml"],
+        "extensions": [".mml"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "mml",
+        "scopeName": "source.mml",
+        "path": "./syntaxes/mml.tmLanguage.json"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/mml-lang-support.git"
+  }
+}
