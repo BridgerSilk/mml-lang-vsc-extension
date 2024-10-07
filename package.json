@@ -2,19 +2,25 @@
   "name": "mml-lang-support",
   "displayName": "MML Lang Support",
   "description": "Syntax highlighting and file icon for Modern Markup Language.",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "publisher": "BridgerSilk",
   "engines": {
     "vscode": "^1.94.0"
   },
   "categories": [
     "Programming Languages"
   ],
+  "icon": "images/mml-icon.png",
   "contributes": {
     "languages": [
       {
         "id": "mml",
-        "aliases": ["Modern Markup Language", "MML", "mml"],
+        "aliases": ["Modern Markup Language", "mml"],
         "extensions": [".mml"],
+        "icon": {
+         "light": "./images/mml-icon.png",
+         "dark": "./images/mml-icon.png"
+        },
         "configuration": "./language-configuration.json"
       }
     ],
@@ -24,10 +30,15 @@
         "scopeName": "source.mml",
         "path": "./syntaxes/mml.tmLanguage.json"
       }
-    ]
+    ],
+    "iconDefinitions": {
+      "mml-icon": {
+        "iconPath": "./images/mml-icon.png"
+      }
+    }
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/mml-lang-support.git"
+    "url": "https://github.com/BridgerSilk/mml-lang-vsc-extension.git"
   }
 }
