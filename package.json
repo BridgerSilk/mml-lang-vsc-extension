@@ -2,7 +2,7 @@
   "name": "mml-lang-support",
   "displayName": "MML Lang Support",
   "description": "Syntax highlighting and file icon for Modern Markup Language.",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "publisher": "BridgerSilk",
   "engines": {
     "vscode": "^1.94.0"
