@@ -77,9 +77,57 @@
 	  {
 		"name": "entity.name.tag.special-close.mml",
 		"match": "\\</(mml|ct|text)\\b"
+	  },
+	  {
+		"name": "keyword.export.mml",
+		"match": "\\$export\\.[a-zA-Z_][a-zA-Z0-9_]*"
+	  },
+	  {
+		"name": "keyword.export.close.mml",
+		"match": "\\$/export"
+	  },
+	  {
+		"name": "variable.mml",
+		"match": ":([a-zA-Z_][a-zA-Z0-9_]*)"
+	  },
+	  {
+		"name": "variable.declaration.mml",
+		"match": "var\\.([a-zA-Z_][a-zA-Z0-9_]*)\\s*=\\s*([^\\n]*)"
+	  },
+	  {
+		"name": "variable.declaration.value.mml",
+		"match": "var\\.[a-zA-Z_][a-zA-Z0-9_]*\\s*=\\s*(\"[^\"]*\"|'[^']*'|(-?\\d+(\\.\\d+)?)|(:[a-zA-Z_][a-zA-Z0-9_]*:))"
+	  },
+	  {
+		"name": "keyword.export.mml",
+		"match": "\\(@([a-zA-Z_][a-zA-Z0-9_]*)\\)"
+	  },
+	  {
+		"name": "meta.embedded.mml",
+		"begin": "\\(&",
+		"end": "\\)\\.\\&[a-zA-Z0-9]+",
+		"patterns": [
+		  {
+			"include": "#attribute"
+		  }
+		]
 	  }
 	],
-	"repository": {},
+	"repository": {
+	  "attribute": {
+		"patterns": [
+		  {
+			"name": "attribute.mml",
+			"match": "([a-zA-Z]+)\\s*\\.\\[([^\\]]+)\\]"
+		  },
+		  {
+			"name": "attribute.value.mml",
+			"match": "([a-zA-Z]+)!\"([^\"]*)\""
+		  }
+		]
+	  }
+	},
 	"fileTypes": ["mml"],
 	"name": "MML"
-}
+  }
+  
