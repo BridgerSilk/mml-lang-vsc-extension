@@ -12,6 +12,7 @@
 		{ "include": "#elements" },
 		{ "include": "#brackets" },
 		{ "include": "#operators" },
+        { "include": "#varFunctions" },
 		{ "include": "#numbers" },
 		{ "include": "#atSymbols" },
 		{ "include": "#preDot" },
@@ -135,6 +136,14 @@
 				}
 			]
 		},
+        "varFunctions": {
+            "patterns": [
+                {
+                    "name": "support.function.variable.mml",
+                    "match": "(?<=\\?)[a-zA-Z_][a-zA-Z0-9_]*"
+                }
+            ]
+        },
 		"variables": {
 			"patterns": [
 				{

@@ -24,6 +24,8 @@ doc!.mml
         a = c["blue"]
         a = "test"
 
+        :a:?type
+
         (&text){:a:}.&text
         (&text){:b:}.&text
         (&text){:c:}.&text
