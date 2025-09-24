@@ -1,133 +1,149 @@
 {
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "MML",
 	"scopeName": "source.mml",
 	"patterns": [
-	  {
-		"name": "keyword.control.doctype.mml",
-		"match": "doc!\\.mml"
-	  },
-	  {
-		"name": "entity.name.tag.mml",
-		"match": "\\(\\&[a-zA-Z0-9]+"
-	  },
-	  {
-		"name": "entity.name.tag.close.mml",
-		"match": "\\.\\&[a-zA-Z0-9]+"
-	  },
-	  {
-		"name": "entity.name.tag.close.mml",
-		"match": "[)]"
-	  },
-	  {
-		"name": "string.quoted.double.mml",
-		"match": "\"[^\"]*\""
-	  },
-	  {
-		"name": "entity.other.attribute-name.mml",
-		"match": "\\b[a-zA-Z0-9]+(?=\\.)"
-	  },
-	  {
-		"name": "punctuation.accessor.dot.mml",
-		"match": "\\."
-	  },
-	  {
-		"name": "punctuation.brackets.square.open.mml",
-		"match": "\\[",
-		"captures": {
-		  "0": { "name": "punctuation.bracket.square.open.mml" }
-		}
-	  },
-	  {
-		"name": "punctuation.brackets.square.close.mml",
-		"match": "\\]",
-		"captures": {
-		  "0": { "name": "punctuation.bracket.square.close.mml" }
-		}
-	  },
-	  {
-		"name": "constant.numeric.attribute-value.mml",
-		"match": "(?<=\\[)[^\\]]+",
-		"captures": {
-		  "0": { "name": "constant.character.attribute-value.mml" }
-		}
-	  },
-	  {
-		"name": "comment.line.double-slash.mml",
-		"match": "!\\/\\/.*?\\/\\/\\!"
-	  },
-	  {
-		"name": "variable.parameter.old.mml",
-		"match": "\\b[a-zA-Z0-9]+!\"[^\"]+\""
-	  },
-	  {
-		"name": "punctuation.section.block.mml",
-		"match": "[{}]"
-	  },
-	  {
-		"name": "entity.other.attribute-name.class.mml",
-		"match": "cl\\.[\\[][a-zA-Z0-9\\-\\s]+[\\]]"
-	  },
-	  {
-		"name": "entity.other.attribute-name.link.mml",
-		"match": "link\\.[\\[][a-zA-Z0-9\\-\\s]+[\\]]"
-	  },
-	  {
-		"name": "entity.name.tag.special.mml",
-		"match": "\\<(mml|ct|text)\\b"
-	  },
-	  {
-		"name": "entity.name.tag.special-close.mml",
-		"match": "\\</(mml|ct|text)\\b"
-	  },
-	  {
-		"name": "keyword.export.mml",
-		"match": "\\$export\\.[a-zA-Z_][a-zA-Z0-9_]*"
-	  },
-	  {
-		"name": "keyword.export.close.mml",
-		"match": "\\$/export"
-	  },
-	  {
-		"name": "variable.mml",
-		"match": ":([a-zA-Z_][a-zA-Z0-9_]*)"
-	  },
-	  {
-		"name": "variable.declaration.mml",
-		"match": "var\\.([a-zA-Z_][a-zA-Z0-9_]*)\\s*=\\s*([^\\n]*)"
-	  },
-	  {
-		"name": "variable.declaration.value.mml",
-		"match": "var\\.[a-zA-Z_][a-zA-Z0-9_]*\\s*=\\s*(\"[^\"]*\"|'[^']*'|(-?\\d+(\\.\\d+)?)|(:[a-zA-Z_][a-zA-Z0-9_]*:))"
-	  },
-	  {
-		"name": "keyword.export.mml",
-		"match": "\\(@([a-zA-Z_][a-zA-Z0-9_]*)\\)"
-	  },
-	  {
-		"name": "meta.embedded.mml",
-		"begin": "\\(&",
-		"end": "\\)\\.\\&[a-zA-Z0-9]+",
-		"patterns": [
-		  {
-			"include": "#attribute"
-		  }
-		]
-	  }
+		{ "include": "#comments" },
+		{ "include": "#strings" },
+        { "include": "#specialBrackets" },
+		{ "include": "#keywords" },
+		{ "include": "#uuids" },
+		{ "include": "#types" },
+		{ "include": "#elements" },
+		{ "include": "#brackets" },
+		{ "include": "#operators" },
+		{ "include": "#numbers" },
+		{ "include": "#atSymbols" },
+		{ "include": "#preDot" },
+		{ "include": "#variables" }
 	],
 	"repository": {
-	  "attribute": {
-		"patterns": [
-		  {
-			"name": "attribute.mml",
-			"match": "([a-zA-Z]+)\\s*\\.\\[([^\\]]+)\\]"
-		  },
-		  {
-			"name": "attribute.value.mml",
-			"match": "([a-zA-Z]+)!\"([^\"]*)\""
-		  }
-		]
-	  }
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.mml",
+					"begin": "!//",
+					"end": "//!"
+				}
+			]
+		},
+		"strings": {
+			"patterns": [
+				{
+					"name": "string.quoted.double.mml",
+					"begin": "\"",
+					"end": "\"",
+					"patterns": [{ "include": "#stringVariables" }]
+				},
+				{
+					"name": "string.quoted.single.mml",
+					"begin": "'",
+					"end": "'",
+					"patterns": [{ "include": "#stringVariables" }]
+				}
+			]
+		},
+		"stringVariables": {
+			"patterns": [
+				{
+					"name": "constant.language.varref.mml",
+					"match": ":[a-zA-Z_][a-zA-Z0-9_]*:"
+				},
+				{
+					"name": "punctuation.separator.varref.mml",
+					"match": ":"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.mml",
+					"match": "\\b(?:static|dynamic|new|map|export|include|doc!.mml|True|False)\\b"
+				}
+			]
+		},
+		"uuids": {
+			"patterns": [
+				{
+					"name": "support.function.uuid.mml",
+					"match": "\\b(?:uuid1|uuid3|uuid4|uuid5)\\b"
+				}
+			]
+		},
+		"types": {
+			"patterns": [
+				{
+					"name": "entity.other.inherited-class.mml",
+					"match": "\\b(?:uuid|bool|str|i32|float|color|list|nonetype|complex|vec2i|vec3i|vecf|bit|char|native)\\b"
+				}
+			]
+		},
+		"elements": {
+			"patterns": [
+				{
+					"name": "entity.name.tag.mml",
+					"match": "&[a-zA-Z0-9_]+|\\.\\&[a-zA-Z0-9_]+"
+				}
+			]
+		},
+		"brackets": {
+            "patterns": [
+                {
+                    "name": "keyword.other.special.mml",
+                    "match": "\\b(?:u|v|c)(?=\\[)"
+                },
+                {
+                    "name": "punctuation.section.brackets.mml",
+                    "match": "[\\{\\}\\[\\]]"
+                }
+            ]
+        },
+		"operators": {
+			"patterns": [
+				{
+					"name": "keyword.operator.mml",
+					"match": "[=\\*\\-\\+/\\^%\\|><\\?~\\.$!\\(\\)\\$\\/]"
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"name": "constant.numeric.float.mml",
+					"match": "\\b[0-9]+\\.[0-9]+\\b"
+				},
+				{
+					"name": "constant.numeric.integer.mml",
+					"match": "\\b[0-9]+\\b"
+				}
+			]
+		},
+		"atSymbols": {
+			"patterns": [
+				{
+					"name": "entity.name.function.mml",
+					"match": "@[a-zA-Z_][a-zA-Z0-9_]*"
+				}
+			]
+		},
+		"preDot": {
+			"patterns": [
+				{
+					"name": "keyword.other.predot.mml",
+					"match": "\\b[a-zA-Z_][a-zA-Z0-9_]*(?=\\.\\[)"
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"name": "variable.other.mml",
+					"match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+				}
+			]
+		}
 	},
 	"fileTypes": ["mml"],
-	"name": "MML"
-  }
-  
+	"uuid": "d95b9ae0-ec6e-4b62-b80f-9f8f7c934c2a"
+}

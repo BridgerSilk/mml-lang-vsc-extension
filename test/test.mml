@@ -1,0 +1,66 @@
+doc!.mml
+
+!include native [std.mml]
+!include [test/testinclude.mml]
+
+(&mml lang.[en]) {
+    (&head) {
+        (&meta charset.[UTF-8])
+        (&meta name.[viewport] content.[width=device-width, initial-scale=1.0])
+        (&title) { test } .&title
+        (&link rel.[stylesheet] link.[test.css])
+
+    }.&head
+
+    (&body) {
+        static color a = c["red"]
+        static color b = c[red=1]
+        static bit c = 0
+        static color d = c["#a36b9fff"] u[aa] v[]
+        static float e = 5
+        dynamic test = u['aa ss :a: aaa']
+        dynamic test = new uuid4 str
+
+        a = c["blue"]
+        a = "test"
+
+        (&text){:a:}.&text
+        (&text){:b:}.&text
+        (&text){:c:}.&text
+        (&text){:d:}.&text
+        (&text){:e:}.&text
+
+        (@filetest)
+
+        $export.navbar
+        (&nav) {
+            (&a link.[./home.html]) { Home } .&a
+            (&a link.[./about.html]) { About } .&a
+        }.&nav
+        $/export
+
+        $export.test
+        (&ct cl.[test] wtf.[ok]) {
+            (&text cl.[testclass]) { test1 } .&text
+            (&text) { test2 } .&text
+        }.&ct
+        $/export
+    
+        (&main) {
+            (@main)
+            (&ct cl.[content] id.[abc]) {
+                (&h2 cl.[heading]) { Hello! } .&h2
+                (&text cl.[test]) { var content: :var_name: } .&text
+                (&text) { Result is: :result: } .&text
+            }.&ct
+        }.&main
+
+    }.&body
+}.&mml
+
+
+!// aa //!
+
+$export.main
+    (&text){:var_name:}.&text
+$/export
